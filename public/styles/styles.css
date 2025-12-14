@@ -1,0 +1,282 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+body {
+  height: 100%;
+  background: url("/public/images/image.png") center/cover no-repeat;
+  background-attachment: fixed;
+  background-position: top center;
+  background-size: 100% 100%;
+  color: #e8e2ff;
+  overflow: hidden;
+}
+
+/* ===== Layout ===== */
+.container {
+  position: relative;
+  height: 100%;
+  padding: clamp(24px, 6vw, 60px) clamp(20px, 8vw, 80px);
+  padding-top: 80px;
+}
+
+.image {
+  display: none;
+}
+
+.content {
+  max-width: 55%;
+  font-size: 20px;
+  line-height: 1.7;
+}
+
+/* ===== Wave ===== */
+.wave {
+  position: absolute;
+  top: -60px;
+  right: -120px;
+  width: 70%;
+  opacity: 0.5;
+}
+
+.wave path {
+  stroke: #8d7adf;
+  stroke-width: 14;
+  stroke-linecap: round;
+  fill: none;
+  stroke-dasharray: 6 10;
+}
+
+/* ===== Text ===== */
+h1 {
+  font-size: clamp(26px, 3vw, 18px);
+  font-weight: 600;
+  margin-bottom: 20px;
+  white-space: nowrap;
+}
+
+/* ===== Entrance animation ===== */
+.animate {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: fadeUp 0.8s ease forwards;
+}
+
+.delay-1 {
+  animation-delay: 0.3s;
+}
+.delay-2 {
+  animation-delay: 0.6s;
+}
+.delay-3 {
+  animation-delay: 0.9s;
+}
+.delay-4 {
+  animation-delay: 1.2s;
+}
+.delay-5 {
+  animation-delay: 1.5s;
+}
+.delay-6 {
+  animation-delay: 1.8s;
+}
+.delay-7 {
+  animation-delay: 2.1s;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Typewriter ===== */
+.type-text {
+  display: inline-block;
+}
+
+.wave-hand {
+  display: inline-block;
+  margin-left: 6px;
+  transform-origin: 70% 70%;
+  opacity: 0;
+}
+
+.wave-hand.active {
+  opacity: 1;
+  animation: handWave 1.6s ease-in-out infinite;
+}
+
+@keyframes handWave {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(14deg);
+  }
+  20% {
+    transform: rotate(-8deg);
+  }
+  30% {
+    transform: rotate(14deg);
+  }
+  40% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+p {
+  margin-bottom: 14px;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+/* ===== Underline ===== */
+.underline-wrapper {
+  position: relative;
+  display: inline-block;
+  color: #ffffff;
+}
+
+.underline {
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 18px;
+}
+
+.underline path {
+  stroke: #ff6b6b;
+  stroke-width: 6;
+  stroke-linecap: round;
+  fill: none;
+  stroke-dasharray: 420;
+  stroke-dashoffset: 420;
+  animation: draw 1.2s ease-out forwards;
+  animation-delay: 1.4s;
+}
+
+.underline path.shadow {
+  stroke-opacity: 0.35;
+  stroke-width: 7;
+  animation-delay: 1.4s;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ===== Footer ===== */
+.footer {
+  margin-top: 25px;
+  font-size: clamp(12px, 4vw, 22px);
+  font-weight: 700;
+  color: #bda7ff;
+}
+
+/* ===== People image ===== */
+.people {
+  position: absolute;
+  right: 80px;
+  bottom: 0;
+}
+
+.people img {
+  height: 360px;
+}
+
+/* ===== Confetti ===== */
+.confetti {
+  position: fixed;
+  width: 6px;
+  height: 10px;
+  top: -12px;
+  background: #ff6b6b;
+  animation: confetti-fall linear forwards;
+  z-index: 999;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+@keyframes confetti-fall {
+  to {
+    transform: translateY(110vh) rotate(540deg);
+    opacity: 0;
+  }
+}
+
+/* ================== RESPONSIVE ================== */
+
+@media (max-width: 1024px) {
+  .content {
+    max-width: 70%;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    height: 100dvh;
+    overflow: auto;
+    background: url("/public/images/mobile-bg.png") no-repeat;
+    background-attachment: scroll;
+    background-size: 100% 100%;
+    background-position: top;
+  }
+  .image {
+    display: flex;
+    justify-content: end;
+  }
+  img {
+    width: 100px;
+  }
+  .container {
+    padding-top: 10px;
+  }
+
+  .content {
+    max-width: 100%;
+    font-size: 12px;
+  }
+
+  h1 {
+    white-space: normal;
+    font-size: 14px;
+  }
+
+  .underline {
+    height: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    height: 100%;
+    margin-bottom: 450px;
+  }
+
+  p {
+    margin-bottom: 12px;
+  }
+
+  .footer {
+    margin-top: 18px;
+  }
+}

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Keka Style Onboarding</title>
+    <link rel="icon" type="image/png" href="public/images/favicon.png" />
+
+    <link rel="stylesheet" href="/public/styles/styles.css" />
+  </head>
+
+  <body>
+    <div class="image"><img src="/public/images/logo.png" alt="" "></div>
+
+    <div class="container">
+      <div class="content">
+        <h1 class="animate">
+          <span id="typeText" class="type-text"></span>
+          <span id="hand" class="wave-hand">👋</span>
+        </h1>
+
+        <p class="animate delay-1">
+          Every great career begins with a moment of connection –<br />
+          a feeling that you’ve found the right company, with the right people,
+          at the right time.
+        </p>
+
+        <p class="animate delay-2">
+          At Keka, we don’t want you to wait till Day 1 to feel that.<br />
+          <span class="underline-wrapper">
+            Your journey starts now.
+            <svg class="underline" viewBox="0 0 360 22">
+              <path d="M5 14 C 80 26, 280 2, 355 14" />
+              <path class="shadow" d="M5 16 C 80 28, 280 4, 355 16" />
+            </svg>
+          </span>
+        </p>
+
+        <p class="animate delay-3">
+          Hence, our first question to you is this–<br />
+          <span class="bold">
+            What are you most excited to build, learn, or discover here?
+          </span>
+        </p>
+
+        <p class="animate delay-4">Hold onto that, it’s your starting point.</p>
+
+        <p class="animate delay-5">
+          As you explore the next chapters, you’ll see how your strengths fit
+          into something larger, more meaningful, and built with heart.
+        </p>
+
+        <p class="animate delay-6">
+          As you step into this journey, know this:<br />
+          you’re joining a company that
+          <span class="bold">grows with you</span>, not around you.
+        </p>
+
+        <p class="animate delay-7">
+          This isn’t onboarding.<br />
+          It’s the beginning of your chapter with us, written together.
+        </p>
+
+        <div class="footer animate delay-7">
+          Welcome to Keka.<br />
+          We’re already rooting for you.
+        </div>
+      </div>
+    </div>
+    <div class="bottom"></div>
+
+    <script>
+      const text = "Hi There!";
+      const speed = 90;
+      const visibleTime = 1000;
+      const restartGap = 1;
+
+      let index = 0;
+
+      function type() {
+        const el = document.getElementById("typeText");
+        const hand = document.getElementById("hand");
+
+        if (index < text.length) {
+          el.textContent += text[index++];
+          setTimeout(type, speed);
+        } else {
+          hand.classList.add("active");
+          setTimeout(() => {
+            el.textContent = "";
+            index = 0;
+            hand.classList.remove("active");
+            setTimeout(type, restartGap);
+          }, visibleTime);
+        }
+      }
+
+      type();
+
+      // Confetti burst on load (skips if user prefers reduced motion)
+      (function () {
+        const prefersReducedMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        );
+        if (prefersReducedMotion.matches) return;
+
+        const colors = ["#ff6b6b", "#ffd166", "#6a4cff", "#72f3ff", "#ffffff"];
+
+        function launchConfetti() {
+          const total = 80;
+          for (let i = 0; i < total; i++) {
+            const c = document.createElement("div");
+            c.className = "confetti";
+            c.style.left = Math.random() * 100 + "vw";
+            c.style.background =
+              colors[Math.floor(Math.random() * colors.length)];
+            const fall = Math.random() * 2 + 2.2; // 2.2s - 4.2s
+            const delay = Math.random() * 0.8; // small stagger
+            c.style.animationDuration = fall + "s";
+            c.style.animationDelay = delay + "s";
+            c.style.opacity = 0.75 + Math.random() * 0.2;
+            document.body.appendChild(c);
+            setTimeout(() => c.remove(), (fall + delay) * 1000 + 200);
+          }
+        }
+
+        setTimeout(launchConfetti, 1200);
+      })();
+    </script>
+  </body>
+</html>
