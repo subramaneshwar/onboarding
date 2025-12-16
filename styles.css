@@ -267,10 +267,10 @@ p {
 }
 
 @media (max-width: 480px) {
-  body {
+  /* body {
     height: 100%;
     margin-bottom: 450px;
-  }
+  } */
 
   p {
     margin-bottom: 12px;
